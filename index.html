@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Digitfinder</title>
+</head>
+<body>
+    <div id="homePage" class="page active">
+        <div class="flex-center">
+            <h1>Digitfinder</h1>
+        </div>
+        <div class="genieImg flex-center flex-col">
+            <img src="img/pibblegenie.png" alt="Genie">
+            <!-- learned how to use buttons as links from https://www.w3schools.com/html/tryit.asp?filename=tryhtml_links_button_element -->
+            <button onclick="showPage('gameLoop')" class="button">Start</button>
+            <button onclick="showPage('guide')" class="button">Guide</button>
+            <button onclick="showPage('gameSettings')" class="button">Settings</button>
+            <button onclick="loadAndDisplayStats(); showPage('statsPage')" class="button">Stats</button>
+            <button onclick="showPage('credits')" class="button">Credits</button>
+        </div>
+    </div>
+
+    <div id="gameLoop" class="page">
+        <div class="flex-end">
+            <button onclick="showPage('homePage')" class="button">Exit</button>
+        </div>
+        <div class="genieImg flex-center">
+            <img src="img/pibblegenie.png" alt="Genie">
+            <div class="flex-center flex-col">
+                <p id="questionNum">Question 1</p>
+                <h3 class="questionBox" id="questionBox">Lorem ipsum...</h3>
+                <!-- <a href="finalGuess.html" class="button">Yes</a> -->
+                <button class="button" id="yesBtn">Yes</button>
+                <button class="button" id="noBtn">No</button>
+                <button class="button" id="unsureBtn">Not sure</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="guide" class="page">
+            <div class="flex-end">
+            <button onclick="showPage('homePage')" class="button">Exit</button>
+        </div>
+    <div class="flex-center">
+        <h1>Digitfinder Guide</h1>
+    </div>
+
+    <div class="content-row">
+        <div class="settings-card guide-layout">
+
+            <!-- Player Section -->
+            <div class="guide-section">
+                <h3>For Players</h3>
+
+                <p><b>How to Play:</b></p>
+                <ul>
+                    <li>Think of a secret number between 0-100</li>
+                    <li>Computer asks yes/no questions to guess it</li>
+                    <li>Answer: <b>Yes</b>, <b>No</b>, or <b>Not Sure</b></li>
+                </ul>
+
+                <p><b>Question Types:</b></p>
+                <ul>
+                    <li><b>Math:</b> "Is it even?", "Multiple of 10?"</li>
+                    <li><b>Range:</b> "Greater than X?"</li>
+                    <li><b>Trivia:</b> "Meme numbers" or "Pointy digits"</li>
+                </ul>
+
+                <p><b>Winning:</b></p>
+                <ul>
+                    <li><b>You win</b> if computer runs out of guesses</li>
+                    <li><b>Computer wins</b> if it guesses correctly</li>
+                </ul>
+            </div>
+
+            <div class="separator"></div>
+
+            <!-- Developer Section -->
+            <div class="guide-section">
+                <h3>For Developers</h3>
+
+                <p><b>Setup:</b></p>
+                <ul>
+                    <li>Install Node.js</li>
+                    <li>Run: <span class="code-snippet">npm install express</span></li>
+                    <li>Run: <span class="code-snippet">node server.js</span></li>
+                    <p><i>Note: The backend runs on port 8000. Proceed to http://localhost:8000/homePage.html to run the game.</i></p>
+                </ul>
+
+                <p><b>Tech Stack:</b></p>
+                <ul>
+                    <li><b>Backend:</b> Express.js (JSON storage)</li>
+                    <li><b>Frontend:</b> Vanilla JS / SPA Architecture</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <div id="gameSettings" class="page">
+        <!-- Top Right Exit Button -->
+        <div class="flex-end">
+            <button onclick="showPage('homePage')" class="button">Exit</button>
+        </div>
+
+        <!-- Page Title -->
+        <div class="flex-center">
+            <h1>Settings Page</h1>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="content-row">
+            <div class="settings-card">
+                <!-- Max guesses row -->
+                <div class="setting-row">
+                    <label for="max-guesses">Max number of guesses:</label>
+                    <input type="number" id="max-guesses" class="input-field" value="10">
+                </div>
+
+                <!-- Save button row -->
+                <div style="margin-top: 20px;">
+                    <button id="save-settings" class="button" onclick="saveSettingsToBackend()">Save</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+<div id="statsPage" class="page">
+    <div class="flex-end">
+        <button onclick="showPage('homePage')" class="button">Exit</button>
+    </div>
+    <div class="flex-center flex-col">
+        <h1>Game Statistics</h1>
+        <div class="settings-card">
+            <div class="setting-row">
+                <span>Total Games:</span>
+                <span id="totalGames">0</span>
+            </div>
+            <div class="setting-row">
+                <span>Computer Wins:</span>
+                <span id="computerWins">0</span>
+            </div>
+            <div class="setting-row">
+                <span>Player Wins:</span>
+                <span id="playerWins">0</span>
+            </div>
+            <div class="setting-row">
+                <span>Invalid Answers:</span>
+                <span id="invalidAnswers">0</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div id="credits" class="page">
+        <div class="flex-end">
+            <button onclick="showPage('homePage')" class="button">Exit</button>
+        </div>
+        <div class="flex-center" style="height: 80vh;">
+            <div class="grey-card flex-center flex-col">
+                <h3>Created and Programmed by:</h3>
+                <h1>The Code Crunchers:</h1>
+                <h2>Phu Pham</h2>
+                <h2>Ryder Jessup</h2>
+                <h2>Shehbaz Sarkaria</h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="computerWin" class="page">
+        <div class="flex-end">
+            <button onclick="showPage('homePage')" class="button">Exit</button>
+        </div>
+
+        <div class="genieImg flex-center">
+            <img src="img/pibblegenie.png" alt="Genie">
+
+            <div class="flex-center flex-col">
+                <div class="questionBox">
+                    <h3>I won!</h3>
+                    <p id="computerAttempts">I guessed your number in X questions.</p>
+                </div>
+
+                <!-- Return to Menu button -->
+                <div id="startButtons">
+                    <button onclick="showPage('homePage')" class="button">Return to menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="playerWin" class="page">
+        <div class="genieImg flex-center">
+            <img src="img/pibblegenie.png" alt="Genie">
+
+            <div class="flex-center flex-col">
+                <div class="questionBox">
+                    <h3>You won!</h3>
+                    <p>The computer ran out of guesses.</p>
+                </div>
+
+                <div class="startButtons">
+                    <button onclick="showPage('homePage')" class="returnToMenu button">Return to menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="invalidAnswer" class="page">
+        <div class="genieImg flex-center">
+            <img src="img/pibblegenie.png" alt="Genie">
+
+            <div class="flex-center flex-col">
+                <div class="questionBox">
+                    <h3>Your number doesn't exist!</h3>
+                </div>
+
+                <div class="startButtons">
+                    <button onclick="showPage('homePage')" class="button">Return to menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Keep the script at the bottom to make sure everything loads properly -->
+    <script src="GameBehaviour.js"></script> 
+</body>
+</html>
