@@ -63,7 +63,7 @@ function saveSettingsToBackend() {
     };
     
     // Send the data to the server
-    fetch('http://localhost:8000/gamesettings', {
+    fetch('/gamesettings', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -81,7 +81,7 @@ function saveSettingsToBackend() {
 
 // Load settings from backend
 function loadSettingsFromBackend() {
-    fetch('http://localhost:8000/loadsettings')
+    fetch('/loadsettings')
         .then(response => response.json())
         .then(settings => {
             document.getElementById('max-guesses').value = settings.maxGuesses;
@@ -96,7 +96,7 @@ function loadSettingsFromBackend() {
 // ********************** Stats Setup **********************
 // Load stats for display
 function loadAndDisplayStats() {
-    fetch('http://localhost:8000/loadstats')
+    fetch('/loadstats')
         .then(response => response.json())
         .then(stats => {
             console.log("Stats received from server:", stats);
@@ -448,7 +448,7 @@ function sendGameResult(resultType) {
     }
 
     // Send to the server with POST
-    fetch('http://localhost:8000/gamestats', {
+    fetch('/gamestats', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
