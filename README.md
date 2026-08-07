@@ -2,6 +2,8 @@
 
 An interactive number-guessing game where the computer tries to guess your secret number between 0-100 using a mix of binary search, trivia, and filter questions.
 
+🔗 **Live Demo:** [https://digit-finder-game-production.up.railway.app](https://digit-finder-game-production.up.railway.app)
+
 ## 🎮 How to Play
 
 1. Think of a number between 0-100
