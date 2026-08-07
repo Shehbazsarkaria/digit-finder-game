@@ -30,7 +30,8 @@ app.use(express.json());
  *
  * Serves static files and is based on serve-static.
  */
-app.use(express.static('.'));
+const path = require('path');
+app.use(express.static(__dirname));
 
 // Defines the path to the JSON files where the settings and stats are saved
 const SETTINGS_FILE = 'game_settings.json';
